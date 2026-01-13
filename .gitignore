@@ -1,0 +1,12 @@
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+node_modules
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
+
+.DS_Store

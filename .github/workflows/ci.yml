@@ -1,0 +1,98 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@ee2113536afb7f793eed4ce60e8d3b26db912da4 # v1.127.0
+        with:
+          ruby-version: '3.1' # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          cache-version: 1 # Increment this number if you need to re-download cached gems
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v3
+
+      - name: Bundle install
+        run: bundle install
+
+      - name: Npm install
+        run: npm install
+
+      - name: Increase node memory
+        run: export NODE_OPTIONS="--max-old-space-size=8192"
+
+      # # Grabs docs2 so can be written under _site
+      # - name: curl docs
+      #   run: curl -L https://github.com/vestauth/docs/archive/refs/heads/main.zip > main.zip
+
+      # # put in _hidden folder so jekyll doesn't copy it over on build
+      # - name: unzip
+      #   run: unzip main.zip -d _hidden
+
+      # # built the /out folder rather than having to place it on github
+      # - name: build /out
+      #   run: cd _hidden/docs-main && npm install && NODE_ENV=production npm run build && cd ../..
+
+      # # copy out/docs folder
+      # - name: copy docs
+      #   run: cp -r _hidden/docs-main/out/docs docs
+
+      # # move files around
+      # - name: copy docs/index.html
+      #   run: cp _hidden/docs-main/out/docs.html docs/index.html
+      
+      # Outputs to the './_site' directory by default
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}" --trace
+        env:
+          JEKYLL_ENV: production
+
+      # # copy _next to _site
+      # - name: copy _next
+      #   run: cp -r _hidden/docs-main/out/_next _site/_next
+
+      # # copy assets to _site
+      # - name: copy assets
+      #   run: cp -r _hidden/docs-main/out/assets _site
+
+      - name: Upload artifact
+        # Automatically uploads an artifact from the './_site' directory by default
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
