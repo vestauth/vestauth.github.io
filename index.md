@@ -2,4 +2,4 @@
 title: ""
 ---
 
-vestauth.com–kill the password
+vestauth.com–auth for agents
