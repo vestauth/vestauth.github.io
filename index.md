@@ -20,6 +20,9 @@ title: ""
         <div class="mt-4">
           <a class="text-base underline text-[#b6f2cf] hover:text-[#30ff8a]" href="https://github.com/vestauth/vestauth" rel="noopener noreferrer" target="_blank">github.com/vestauth/vestauth</a>
         </div>
+        <div class="mt-2">
+          <a class="text-sm underline text-[#b6f2cf] hover:text-[#30ff8a]" href="/agent-manifest.json">agent-manifest.json</a>
+        </div>
         <div class="mt-6 text-sm text-[#b6f2cf]">
           <a class="underline hover:text-[#30ff8a]" href="mailto:laura@vestauth.com">laura@vestauth.com</a>
           <span class="text-[#7fcaa3]"> &amp; </span>
