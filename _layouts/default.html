@@ -4,9 +4,23 @@
     {% include layouts/meta.html %}
     {% include layouts/analytics.html %}
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body class="flex flex-col min-h-screen bg-[#0b2f1a] text-white">
     <div class="h-[2px] w-full bg-[#3AFF86]"></div>
-    <header>
+    <header class="px-6 pt-6">
+      <nav class="mx-auto flex w-full max-w-3xl items-center justify-center gap-3 text-sm">
+        <a
+          class="rounded-full border border-white/20 px-4 py-2 transition hover:border-white/60 hover:bg-white/10 {% if page.url == '/products/' %}bg-white/15 border-white/70{% endif %}"
+          href="/products/"
+        >
+          Products
+        </a>
+        <a
+          class="rounded-full border border-white/20 px-4 py-2 transition hover:border-white/60 hover:bg-white/10 {% if page.url == '/docs/' %}bg-white/15 border-white/70{% endif %}"
+          href="/docs/"
+        >
+          Docs
+        </a>
+      </nav>
     </header>
     <main class="flex-grow">
       {{ content }}
