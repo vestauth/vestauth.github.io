@@ -9,12 +9,43 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  body {
+  .bg-scanlines {
     background-image:
-      linear-gradient(rgba(48, 255, 138, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(48, 255, 138, 0.06) 1px, transparent 1px);
-    background-size: 32px 32px;
+      linear-gradient(0deg, rgba(6, 26, 18, 0.92) 0%, rgba(6, 26, 18, 0.92) 100%),
+      repeating-linear-gradient(
+        135deg,
+        rgba(48, 255, 138, 0.18) 0px,
+        rgba(48, 255, 138, 0.18) 3px,
+        transparent 3px,
+        transparent 18px
+      );
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  .bg-noiseglow {
+    background-image:
+      radial-gradient(circle at 25% 20%, rgba(48, 255, 138, 0.12), transparent 35%),
+      radial-gradient(circle at 80% 30%, rgba(48, 255, 138, 0.08), transparent 40%),
+      radial-gradient(circle at 50% 85%, rgba(48, 255, 138, 0.06), transparent 45%),
+      repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.015) 0px,
+        rgba(255, 255, 255, 0.015) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  .bg-dotmatrix {
+    background-image:
+      radial-gradient(circle, rgba(48, 255, 138, 0.22) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(6, 26, 18, 0.92) 0%, rgba(6, 26, 18, 0.92) 100%);
+    background-size: 18px 18px, cover;
     background-position: center;
+    background-attachment: fixed;
   }
 </style>
 <script src="https://cdn.tailwindcss.com"></script>
