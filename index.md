@@ -28,8 +28,11 @@ title: ""
       </section>
 
       <section id="agent-manifest" class="mt-12 rounded-2xl border border-[#1a3b2c] bg-[#0c241a] p-6 shadow-[0_0_0_1px_rgba(48,255,138,0.05),0_0_30px_rgba(48,255,138,0.08)]">
-        <div class="flex items-center justify-between">
-          <h2 class="text-lg font-semibold tracking-tight">Agent Manifest</h2>
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <h2 class="text-lg font-semibold tracking-tight">Agent Manifest</h2>
+            <span class="rounded-full border border-[#1f6a4a] bg-[#0b2a1d] px-2 py-0.5 text-[10px] uppercase tracking-[0.2em] text-[#7fffb2]">manifest v1</span>
+          </div>
           <span class="text-xs text-[#b6f2cf]">schema_version: 1.0</span>
         </div>
 

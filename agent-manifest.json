@@ -1,0 +1,19 @@
+---
+permalink: /agent-manifest.json
+layout: null
+---
+{
+  "schema_version": "1.0",
+  "product_name": "vestauth",
+  "purpose": "Auth for agents. One command to sign up for services.",
+  "primary_users": ["AI agents", "service providers"],
+  "core_flow": [
+    "curl -sSf https://vestauth.sh | sh",
+    "vestauth agent init",
+    "vestauth agent curl https://api.vestauth.com/whoami"
+  ],
+  "auth_model": "delegated_scoped_access",
+  "integration_surface": "cli_api",
+  "contact": "laura@vestauth.com, scott@vestauth.com",
+  "last_updated": "2026-02-04"
+}
