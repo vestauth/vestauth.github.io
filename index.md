@@ -8,7 +8,7 @@ title: ""
       <div>
         <h1 class="text-3xl font-semibold tracking-tight">vestauth</h1>
         <p class="mt-3 text-base text-[#c7f7db]">
-          <strong class="text-[#30ff8a]">auth for agents</strong>–from the creator of <a class="underline text-[#b6f2cf] hover:text-[#30ff8a]" href="https://github.com/dotenvx/dotenvx" rel="noopener noreferrer" target="_blank">dotenvx</a>
+          <strong class="text-[#30ff8a]">auth for agents</strong>–from the creator of <a class="underline text-[#b6f2cf] hover:text-[#30ff8a]" href="https://github.com/motdotla/dotenv" rel="noopener noreferrer" target="_blank">dotenv</a> and <a class="underline text-[#b6f2cf] hover:text-[#30ff8a]" href="https://github.com/dotenvx/dotenvx" rel="noopener noreferrer" target="_blank">dotenvx</a>
         </p>
       </div>
 
