@@ -12,8 +12,14 @@ layout: null
     "vestauth agent init",
     "vestauth agent curl https://api.vestauth.com/whoami"
   ],
+  "identity_outputs": ["AGENT_PUBLIC_JWK", "AGENT_PRIVATE_JWK", "AGENT_ID"],
+  "public_key_discovery": "/.well-known/http-message-signatures-directory",
+  "signing_standard": "RFC 9421 (HTTP Message Signatures)",
+  "signed_headers": ["Signature", "Signature-Input", "Signature-Agent"],
+  "signature_agent_format": "sig1=<AGENT_ID>.agents.vestauth.com",
+  "auth_tag": "web-bot-auth",
   "auth_model": "delegated_scoped_access",
   "integration_surface": "cli_api",
   "contact": "laura@vestauth.com, scott@vestauth.com",
-  "last_updated": "2026-02-04"
+  "last_updated": "2026-02-05"
 }

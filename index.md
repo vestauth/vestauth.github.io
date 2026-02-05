@@ -15,7 +15,7 @@ title: ""
       <section id="human" class="mt-10">
         <h2 class="text-xl font-semibold tracking-tight">Human Summary</h2>
         <p class="mt-3 text-base text-[#c7f7db]">
-          vestauth lets agents initialize themselves and make authenticated curl calls to vestauth providers with a single command.
+          Vestauth gives agents a cryptographic identity and a simple way to authenticate HTTP requests.
         </p>
         <div class="mt-4">
           <a class="text-base underline text-[#b6f2cf] hover:text-[#30ff8a]" href="https://github.com/vestauth/vestauth" rel="noopener noreferrer" target="_blank">github.com/vestauth/vestauth</a>
@@ -63,6 +63,30 @@ title: ""
             </dd>
           </div>
           <div>
+            <dt class="text-[#7fcaa3]">identity_outputs</dt>
+            <dd class="mt-1">AGENT_PUBLIC_JWK, AGENT_PRIVATE_JWK, AGENT_ID (stored in .env)</dd>
+          </div>
+          <div>
+            <dt class="text-[#7fcaa3]">public_key_discovery</dt>
+            <dd class="mt-1">/.well-known/http-message-signatures-directory</dd>
+          </div>
+          <div>
+            <dt class="text-[#7fcaa3]">signing_standard</dt>
+            <dd class="mt-1">RFC 9421 (HTTP Message Signatures)</dd>
+          </div>
+          <div>
+            <dt class="text-[#7fcaa3]">signed_headers</dt>
+            <dd class="mt-1">Signature, Signature-Input, Signature-Agent</dd>
+          </div>
+          <div>
+            <dt class="text-[#7fcaa3]">signature_agent_format</dt>
+            <dd class="mt-1">sig1=&lt;AGENT_ID&gt;.agents.vestauth.com</dd>
+          </div>
+          <div>
+            <dt class="text-[#7fcaa3]">auth_tag</dt>
+            <dd class="mt-1">web-bot-auth</dd>
+          </div>
+          <div>
             <dt class="text-[#7fcaa3]">auth_model</dt>
             <dd class="mt-1">Delegated, scoped access (agent-first)</dd>
           </div>
@@ -76,7 +100,7 @@ title: ""
           </div>
           <div>
             <dt class="text-[#7fcaa3]">last_updated</dt>
-            <dd class="mt-1">2026-02-04</dd>
+            <dd class="mt-1">2026-02-05</dd>
           </div>
         </dl>
 
@@ -91,10 +115,16 @@ title: ""
               "vestauth agent init",
               "vestauth agent curl https://api.vestauth.com/whoami"
             ],
+            "identity_outputs": ["AGENT_PUBLIC_JWK", "AGENT_PRIVATE_JWK", "AGENT_ID"],
+            "public_key_discovery": "/.well-known/http-message-signatures-directory",
+            "signing_standard": "RFC 9421 (HTTP Message Signatures)",
+            "signed_headers": ["Signature", "Signature-Input", "Signature-Agent"],
+            "signature_agent_format": "sig1=<AGENT_ID>.agents.vestauth.com",
+            "auth_tag": "web-bot-auth",
             "auth_model": "delegated_scoped_access",
             "integration_surface": "cli_api",
             "contact": "laura@vestauth.com, scott@vestauth.com",
-            "last_updated": "2026-02-04"
+            "last_updated": "2026-02-05"
           }
         </script>
       </section>
