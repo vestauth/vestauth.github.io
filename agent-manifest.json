@@ -6,7 +6,7 @@ layout: null
   "schema_version": "1.0",
   "product_name": "vestauth",
   "purpose": "Auth for agents. One command to sign up for services.",
-  "primary_users": ["AI agents", "service providers"],
+  "primary_users": ["AI agents"],
   "core_flow": [
     "curl -sSf https://vestauth.sh | sh",
     "vestauth agent init",

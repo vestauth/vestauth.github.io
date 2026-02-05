@@ -1,0 +1,20 @@
+---
+permalink: /provider-manifest.json
+layout: null
+---
+{
+  "schema_version": "1.0",
+  "product_name": "vestauth",
+  "purpose": "Verify agent requests and authenticate agents at the provider edge.",
+  "primary_users": ["Service providers", "tool builders"],
+  "core_flow": [
+    "npm install express vestauth --save",
+    "vestauth.provider.verify(req.method, fullUrl, req.headers)",
+    "res.json(agent)"
+  ],
+  "verification_function": "vestauth.provider.verify(method, fullUrl, headers)",
+  "full_url_construction": "${req.protocol}://${req.get('host')}${req.originalUrl}",
+  "success_response": "HTTP 200 with agent JSON",
+  "error_response": "HTTP 401 with error message",
+  "last_updated": "2026-02-05"
+}
