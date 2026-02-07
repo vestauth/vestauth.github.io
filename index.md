@@ -145,7 +145,7 @@ title: ""
         </div>
 
         <div class="mt-5 hidden" data-manifest-panel="provider">
-          <dl class="grid gap-4 text-sm">
+          <dl class="grid gap-4 text-sm break-words">
             <div>
               <dt class="text-[#7fcaa3]">product_name</dt>
               <dd class="mt-1">vestauth</dd>
