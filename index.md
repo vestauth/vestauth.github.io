@@ -145,22 +145,22 @@ title: ""
         </div>
 
         <div class="mt-5 hidden" data-manifest-panel="provider">
-          <dl class="grid gap-4 text-sm break-words">
+          <dl class="grid gap-4 text-sm">
             <div>
               <dt class="text-[#7fcaa3]">product_name</dt>
-              <dd class="mt-1">vestauth</dd>
+              <dd class="mt-1 break-words [overflow-wrap:anywhere]">vestauth</dd>
             </div>
             <div>
               <dt class="text-[#7fcaa3]">purpose</dt>
-              <dd class="mt-1">Verify agent requests and authenticate agents at the provider edge.</dd>
+              <dd class="mt-1 break-words [overflow-wrap:anywhere]">Verify agent requests and authenticate agents at the provider edge.</dd>
             </div>
             <div>
               <dt class="text-[#7fcaa3]">primary_users</dt>
-              <dd class="mt-1">Service providers, tool builders</dd>
+              <dd class="mt-1 break-words [overflow-wrap:anywhere]">Service providers, tool builders</dd>
             </div>
             <div>
               <dt class="text-[#7fcaa3]">core_flow</dt>
-              <dd class="mt-1">
+              <dd class="mt-1 break-words [overflow-wrap:anywhere]">
                 <ol class="mt-2 list-decimal space-y-1 pl-5 text-[#c7f7db]">
                   <li>Install: <span class="text-[#d9ffe9]">npm install express vestauth --save</span></li>
                   <li>Verify: <span class="text-[#d9ffe9]">vestauth.provider.verify(req.method, fullUrl, req.headers)</span></li>
@@ -170,23 +170,23 @@ title: ""
             </div>
             <div>
               <dt class="text-[#7fcaa3]">verification_function</dt>
-              <dd class="mt-1">vestauth.provider.verify(method, fullUrl, headers)</dd>
+              <dd class="mt-1 break-words [overflow-wrap:anywhere]">vestauth.provider.verify(method, fullUrl, headers)</dd>
             </div>
             <div>
               <dt class="text-[#7fcaa3]">full_url_construction</dt>
-              <dd class="mt-1">`${req.protocol}://${req.get('host')}${req.originalUrl}`</dd>
+              <dd class="mt-1 break-words [overflow-wrap:anywhere]">`${req.protocol}://${req.get('host')}${req.originalUrl}`</dd>
             </div>
             <div>
               <dt class="text-[#7fcaa3]">success_response</dt>
-              <dd class="mt-1">HTTP 200 with agent JSON</dd>
+              <dd class="mt-1 break-words [overflow-wrap:anywhere]">HTTP 200 with agent JSON</dd>
             </div>
             <div>
               <dt class="text-[#7fcaa3]">error_response</dt>
-              <dd class="mt-1">HTTP 401 with error message</dd>
+              <dd class="mt-1 break-words [overflow-wrap:anywhere]">HTTP 401 with error message</dd>
             </div>
             <div>
               <dt class="text-[#7fcaa3]">last_updated</dt>
-              <dd class="mt-1">2026-02-05</dd>
+              <dd class="mt-1 break-words [overflow-wrap:anywhere]">2026-02-05</dd>
             </div>
           </dl>
 
