@@ -2,7 +2,7 @@ url: "https://vestauth.com" # the base hostname & protocol for your site, e.g. h
 baseurl: "/" # the subpath of your site, e.g. /blog
 title: "vestauth" # the name of your site, e.g. ACME Corp.
 logo: "https://raw.githubusercontent.com/motdotla/dotenv/master/dotenv.svg"
-description: "coming soon"
+description: "auth for agents"
 
 # Footer "Edit this page on GitHub" link text
 github_edit_link: true # show or hide edit this page link

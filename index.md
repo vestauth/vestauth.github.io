@@ -11,8 +11,8 @@ title: ""
     <p class="break-words [overflow-wrap:anywhere]"><span class="text-[#1a7f52] dark:text-[#30ff8a]">$</span> vestauth agent init</p>
 
     <section class="mt-6 sm:mt-8">
-      <h2 class="text-[#1a7f52] dark:text-[#30ff8a]">Description</h2>
-      <p class="mt-3 max-w-5xl italic"><strong>auth for agents</strong>&ndash;from the creator of <a class="underline" href="https://github.com/motdotla/dotenv#readme" target="_blank" rel="noopener noreferrer"><code>dotenv</code></a> and <a class="underline" href="https://github.com/dotenvx/dotenvx#readme" target="_blank" rel="noopener noreferrer"><code>dotenvx</code></a>.</p>
+      <h2 class="text-[#1a7f52] dark:text-[#30ff8a]">auth for agents</h2>
+      <p class="mt-3 max-w-5xl italic">from the creator of <a class="underline" href="https://github.com/motdotla/dotenv#readme" target="_blank" rel="noopener noreferrer"><code>dotenv</code></a> and <a class="underline" href="https://github.com/dotenvx/dotenvx#readme" target="_blank" rel="noopener noreferrer"><code>dotenvx</code></a>.</p>
     </section>
 
     <section class="mt-4 sm:mt-6">
