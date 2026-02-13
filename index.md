@@ -105,21 +105,60 @@ app.listen(3000)</code></pre>
         .pointsData([])
         (root);
 
-      const material = globe.globeMaterial();
-      material.color.set('#eceef0');
-      material.emissive.set('#d4d8dd');
-      material.emissiveIntensity = 0.03;
-      material.shininess = 0.02;
-      material.transparent = true;
-      material.opacity = 0.3;
+      const renderer = globe.renderer();
+      if (renderer && typeof renderer.setClearColor === 'function') {
+        renderer.setClearColor(0x000000, 0);
+      }
 
-      globe.atmosphereColor('#dfe3e8');
-      globe.atmosphereAltitude(0.03);
-      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const material = globe.globeMaterial();
+      const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      let lineColor = 'rgba(8, 14, 24, 0.98)';
+
+      function resolveDarkMode() {
+        const doc = document.documentElement;
+        const body = document.body;
+        const classDark = (doc && doc.classList.contains('dark')) || (body && body.classList.contains('dark'));
+        return classDark || darkQuery.matches;
+      }
+
+      function applyThemeToGlobe() {
+        const isDark = resolveDarkMode();
+        globe.backgroundColor('rgba(0,0,0,0)');
+        material.transparent = true;
+        if (isDark) {
+          material.color.set('#173d2a');
+          material.emissive.set('#0a1f15');
+          material.emissiveIntensity = 0.12;
+          material.shininess = 0.18;
+          material.opacity = 0.42;
+          globe.atmosphereColor('#3AFF86');
+          globe.atmosphereAltitude(0.07);
+          lineColor = 'rgba(58, 255, 134, 0.8)';
+        } else {
+          material.color.set('#eceef0');
+          material.emissive.set('#d4d8dd');
+          material.emissiveIntensity = 0.03;
+          material.shininess = 0.02;
+          material.opacity = 0.3;
+          globe.atmosphereColor('#dfe3e8');
+          globe.atmosphereAltitude(0.03);
+          lineColor = 'rgba(8, 14, 24, 0.98)';
+        }
+      }
+      applyThemeToGlobe();
+      darkQuery.addEventListener('change', applyThemeToGlobe);
+      const themeObserver = new MutationObserver(applyThemeToGlobe);
+      if (document.documentElement) {
+        themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+      }
+      if (document.body) {
+        themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+      }
+
       globe
         .polygonCapColor(() => 'rgba(0, 0, 0, 0)')
         .polygonSideColor(() => 'rgba(0, 0, 0, 0)')
-        .polygonStrokeColor(() => isDark ? 'rgba(246, 248, 252, 0.95)' : 'rgba(8, 14, 24, 0.98)')
+        .polygonStrokeColor(() => lineColor)
         .polygonAltitude(0.006);
 
       fetch('https://cdn.jsdelivr.net/gh/vasturiano/three-globe@master/example/country-polygons/ne_110m_admin_0_countries.geojson')
