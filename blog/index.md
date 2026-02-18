@@ -9,7 +9,7 @@ title: "Blog"
     <p class="break-words [overflow-wrap:anywhere]"><span class="text-[#1a7f52] dark:text-[#30ff8a]">$</span> <a class="underline decoration-[#1a7f52]/50 underline-offset-4 hover:decoration-[#1a7f52] dark:decoration-[#30ff8a]/50 dark:hover:decoration-[#30ff8a]" href="/">vestauth</a> / blog</p>
 
     <section class="mt-6 sm:mt-8">
-      <p class="max-w-3xl text-zinc-600 dark:text-zinc-400">short notes on agentic auth and its tools.</p>
+      <p class="max-w-3xl text-zinc-600 dark:text-zinc-400">short notes from Laura and Scott on agentic auth and its tools.</p>
     </section>
 
     <section class="mt-5 sm:mt-6">
