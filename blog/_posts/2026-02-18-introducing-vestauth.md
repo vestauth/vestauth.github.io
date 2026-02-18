@@ -2,6 +2,8 @@
 layout: blog
 author: "Scott Motte – Mot"
 title: "introducing vestauth"
+categories:
+  - blog
 image: "/assets/img/blog/blog-1.png"
 excerpt: "Agent authentication with verifiable identity and request signatures."
 ---

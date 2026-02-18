@@ -2,20 +2,184 @@
 layout: default
 ---
 
-<main class="w-full max-w-2xl mx-auto px-6 mt-12 md:mt-20 flex flex-col gap-4">
-  <a href="/blog">&larr; back to blog</a>
-  <img class="mx-auto h-8 w-8 rounded-full" src="/assets/img/mot.jpg" alt="Scott Motte" />
-  <p class="text-center">Scott (Mot) Motte</p>
-  <p><time datetime="{{ page.date | date: "%Y-%m-%d"  }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
+<style>
+  .blog-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 3rem;
+  }
+
+  .blog-toplink {
+    color: #3f3f46;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .blog-toplink:hover { text-decoration: underline; }
+
+  .blog-author {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .blog-author img {
+    width: 58px;
+    height: 58px;
+    border-radius: 999px;
+    display: inline-block;
+    object-fit: cover;
+  }
+
+  .blog-author-name {
+    margin-top: 0.6rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    color: #3f3f46;
+  }
+
+  .blog-date {
+    margin-top: 2rem;
+    margin-bottom: 0;
+    color: #52525b;
+    font-size: 0.95rem;
+  }
+
+  .blog-title {
+    margin-top: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .blog-cover {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1.75rem;
+    display: block;
+  }
+
+  .blog-content {
+    font-size: 1.26rem;
+    line-height: 1.65;
+    color: #111827;
+  }
+
+  .blog-content h2,
+  .blog-content h3 {
+    margin-top: 2.4rem;
+    margin-bottom: 0.9rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  .blog-content h2 { font-size: 1.75rem; }
+  .blog-content h3 { font-size: 1.35rem; }
+
+  .blog-content p {
+    margin-top: 0;
+    margin-bottom: 1.15rem;
+  }
+
+  .blog-content ul,
+  .blog-content ol {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+    padding-left: 1.4rem;
+  }
+
+  .blog-content li {
+    margin-bottom: 0.45rem;
+  }
+
+  .blog-content code {
+    background: #f4f4f5;
+    color: #111827;
+    font-size: 0.92em;
+    border-radius: 6px;
+    padding: 0.08rem 0.32rem;
+  }
+
+  .blog-content pre {
+    margin-top: 0.2rem;
+    margin-bottom: 1.3rem;
+    background: #f4f4f5;
+    border: 1px solid #e4e4e7;
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+  }
+
+  .blog-content pre code {
+    background: transparent;
+    padding: 0;
+    font-size: 0.9rem;
+  }
+
+  .blog-content a {
+    color: #0f766e;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .blog-footer {
+    margin-top: 2.75rem;
+    border-top: 1px solid #e4e4e7;
+    padding-top: 1.25rem;
+    text-align: center;
+    color: #52525b;
+    font-size: 0.95rem;
+  }
+
+  .blog-footer a { color: #0f766e; }
+
+  @media (max-width: 640px) {
+    .blog-wrap { padding: 1.2rem 1rem 2rem; }
+    .blog-content { font-size: 1.18rem; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .blog-toplink,
+    .blog-author-name,
+    .blog-date,
+    .blog-footer {
+      color: #d4d4d8;
+    }
+
+    .blog-content {
+      color: #f4f4f5;
+    }
+
+    .blog-content code,
+    .blog-content pre {
+      background: #1f2937;
+      border-color: #374151;
+      color: #f4f4f5;
+    }
+
+    .blog-content a,
+    .blog-footer a { color: #5eead4; }
+  }
+</style>
+
+<main class="blog-wrap">
+  <a class="blog-toplink" href="/blog">&larr; Back to blog</a>
+
+  <header class="blog-author">
+    <img src="/assets/img/mot.jpg" alt="Scott Motte" />
+    <p class="blog-author-name">Scott (Mot) Motte</p>
+  </header>
+
   <article>
-    <h1 class="text-2xl font-black mb-4">
-      {{ page.title }}
-    </h1>
-    <div class="prose mx-auto max-w-prose">
-      {{ content }}
-    </div>
+    <p class="blog-date"><time datetime="{{ page.date | date: "%Y-%m-%d"  }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
+    <h1 class="blog-title">{{ page.title }}</h1>
+    {% if page.image %}
+      <img class="blog-cover" src="{{ page.image }}" alt="{{ page.title }}" loading="eager" />
+    {% endif %}
+    <div class="blog-content">{{ content }}</div>
   </article>
-  <div class="prose mx-auto max-w-prose my-10">
-    <p class="text-center"><a href="/feed.xml">Subscribe via RSS</a> or follow us <a href="https://x.com/vestauth">@vestauth 𝕏</a></p>
-  </div>
+
+  <footer class="blog-footer">
+    <p><a href="/feed.xml">Subscribe via RSS</a> or follow us <a href="https://x.com/vestauth">@vestauth</a>.</p>
+  </footer>
 </main>
