@@ -1,6 +1,6 @@
 ---
 layout: blog
-author: "Scott Motte – Mot"
+author: "Scott Motte"
 title: "introducing vestauth"
 categories:
   - blog
@@ -21,6 +21,12 @@ The shift to agents introduces a new baseline requirement: providers need to kno
 - agent identities backed by cryptographic keys
 - signed requests agents can generate from the CLI
 - verification primitives providers can use in their servers
+
+## Install
+
+```sh
+curl -sSf https://vestauth.sh | sh
+```
 
 ## Quick look
 
