@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<main class="w-full max-w-2xl mx-auto px-6 mt-12 md:mt-20 flex flex-col gap-4">
+  <a href="/blog">&larr; back to blog</a>
+  <img class="mx-auto h-8 w-8 rounded-full" src="/assets/img/mot.jpg" alt="Scott Motte" />
+  <p class="text-center">Scott (Mot) Motte</p>
+  <p><time datetime="{{ page.date | date: "%Y-%m-%d"  }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
+  <article>
+    <h1 class="text-2xl font-black mb-4">
+      {{ page.title }}
+    </h1>
+    <div class="prose mx-auto max-w-prose">
+      {{ content }}
+    </div>
+  </article>
+  <div class="prose mx-auto max-w-prose my-10">
+    <p class="text-center"><a href="/feed.xml">Subscribe via RSS</a> or follow us <a href="https://x.com/vestauth">@vestauth 𝕏</a></p>
+  </div>
+</main>
