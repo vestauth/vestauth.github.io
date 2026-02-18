@@ -14,14 +14,14 @@ github_edit_view_mode: "tree" # "tree" or "edit" if you want the user to jump in
 # For SEO Jekyll Plugin
 author:
   name: vestauth
-  twitter: vestauth
+  twitter: vestauthx
 twitter:
-  username: vestauth
+  username: vestauthx
   card: summary
 social:
   name: vestauth
   links:
-    - https://twitter.com/vestauth
+    - https://twitter.com/vestauthx
     - https://github.com/vestauth
     - https://linkedin.com/company/vestauth
     - https://www.youtube.com/@vestauth

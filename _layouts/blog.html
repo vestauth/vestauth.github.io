@@ -3,183 +3,234 @@ layout: default
 ---
 
 <style>
-  .blog-wrap {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 2rem 1.25rem 3rem;
+  .blog-post-shell {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 2rem 1.25rem 2.5rem;
+  }
+
+  .blog-post-wrap {
+    position: relative;
+    z-index: 10;
+    max-width: 42rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.72rem;
+    line-height: 1.65;
+    color: #111827;
+    text-transform: lowercase;
+  }
+
+  .blog-topline {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .blog-cmd {
+    color: #1a7f52;
   }
 
   .blog-toplink {
-    color: #3f3f46;
-    text-decoration: none;
-    font-size: 0.95rem;
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(26, 127, 82, 0.5);
   }
 
-  .blog-toplink:hover { text-decoration: underline; }
-
-  .blog-author {
-    margin-top: 2rem;
-    text-align: center;
+  .blog-toplink:hover {
+    text-decoration-color: #1a7f52;
   }
 
-  .blog-author img {
-    width: 58px;
-    height: 58px;
-    border-radius: 999px;
-    display: inline-block;
-    object-fit: cover;
-  }
-
-  .blog-author-name {
-    margin-top: 0.6rem;
-    margin-bottom: 0;
-    font-size: 1rem;
-    color: #3f3f46;
+  .blog-header {
+    margin-top: 1.25rem;
   }
 
   .blog-date {
-    margin-top: 2rem;
-    margin-bottom: 0;
+    margin-top: 0.55rem;
     color: #52525b;
-    font-size: 0.95rem;
   }
 
   .blog-title {
-    margin-top: 0.75rem;
-    margin-bottom: 1.5rem;
-    font-size: clamp(2rem, 5vw, 2.8rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    margin: 0.6rem 0 0;
+    font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: #1a7f52;
   }
 
   .blog-cover {
     width: 100%;
-    border-radius: 12px;
-    margin-bottom: 1.75rem;
+    border-radius: 10px;
+    margin: 1rem 0 1rem;
     display: block;
   }
 
   .blog-content {
-    font-size: 1.26rem;
-    line-height: 1.65;
+    margin-top: 0.95rem;
+    font-size: 0.86rem;
+    line-height: 1.68;
     color: #111827;
   }
 
   .blog-content h2,
   .blog-content h3 {
-    margin-top: 2.4rem;
-    margin-bottom: 0.9rem;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
+    margin-top: 1.8rem;
+    margin-bottom: 0.65rem;
+    line-height: 1.3;
+    color: #1a7f52;
   }
 
-  .blog-content h2 { font-size: 1.75rem; }
-  .blog-content h3 { font-size: 1.35rem; }
+  .blog-content h2 { font-size: 1.05rem; }
+  .blog-content h3 { font-size: 0.96rem; }
 
   .blog-content p {
     margin-top: 0;
-    margin-bottom: 1.15rem;
+    margin-bottom: 0.85rem;
   }
 
   .blog-content ul,
   .blog-content ol {
     margin-top: 0;
-    margin-bottom: 1.25rem;
-    padding-left: 1.4rem;
+    margin-bottom: 0.95rem;
+    padding-left: 1.2rem;
+  }
+
+  .blog-content ul {
+    list-style: disc;
+  }
+
+  .blog-content ol {
+    list-style: decimal;
+  }
+
+  .blog-content li::marker {
+    color: #1a7f52;
   }
 
   .blog-content li {
-    margin-bottom: 0.45rem;
+    margin-bottom: 0.32rem;
   }
 
   .blog-content code {
     background: #f4f4f5;
     color: #111827;
-    font-size: 0.92em;
+    font-size: 0.9em;
     border-radius: 6px;
     padding: 0.08rem 0.32rem;
   }
 
   .blog-content pre {
-    margin-top: 0.2rem;
-    margin-bottom: 1.3rem;
-    background: #f4f4f5;
-    border: 1px solid #e4e4e7;
-    border-radius: 12px;
-    padding: 0.9rem 1rem;
+    margin-top: 0.15rem;
+    margin-bottom: 1rem;
+    background: #f7f7f7;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 0.75rem 0.9rem;
     overflow-x: auto;
+    font-size: 0.76rem;
   }
 
   .blog-content pre code {
     background: transparent;
     padding: 0;
-    font-size: 0.9rem;
+    font-size: inherit;
   }
 
   .blog-content a {
-    color: #0f766e;
+    color: #1a7f52;
     text-decoration: underline;
-    text-underline-offset: 2px;
+    text-underline-offset: 3px;
   }
 
   .blog-footer {
-    margin-top: 2.75rem;
+    margin-top: 1.8rem;
     border-top: 1px solid #e4e4e7;
-    padding-top: 1.25rem;
-    text-align: center;
+    padding-top: 0.9rem;
     color: #52525b;
-    font-size: 0.95rem;
+    font-size: 0.84rem;
   }
 
-  .blog-footer a { color: #0f766e; }
+  .blog-footer a {
+    color: #1a7f52;
+  }
 
-  @media (max-width: 640px) {
-    .blog-wrap { padding: 1.2rem 1rem 2rem; }
-    .blog-content { font-size: 1.18rem; }
+  .site-footer-wrap {
+    position: relative;
+    z-index: 10;
+  }
+
+  @media (min-width: 640px) {
+    .blog-post-shell {
+      padding: 2.5rem 3rem 3rem;
+    }
+
+    .blog-post-wrap {
+      font-size: 0.78rem;
+    }
   }
 
   @media (prefers-color-scheme: dark) {
-    .blog-toplink,
-    .blog-author-name,
-    .blog-date,
-    .blog-footer {
-      color: #d4d4d8;
-    }
-
+    .blog-post-wrap,
     .blog-content {
       color: #f4f4f5;
     }
 
+    .blog-cmd,
+    .blog-title,
+    .blog-content h2,
+    .blog-content h3,
+    .blog-content a,
+    .blog-footer a,
+    .blog-toplink:hover,
+    .blog-content li::marker {
+      color: #30ff8a;
+    }
+
+    .blog-toplink {
+      text-decoration-color: rgba(48, 255, 138, 0.5);
+    }
+
+    .blog-date,
+    .blog-footer {
+      color: #a1a1aa;
+    }
+
     .blog-content code,
     .blog-content pre {
-      background: #1f2937;
-      border-color: #374151;
+      background: #0d2219;
+      border-color: #2f4f40;
       color: #f4f4f5;
     }
 
-    .blog-content a,
-    .blog-footer a { color: #5eead4; }
+    .blog-footer {
+      border-top-color: #2f4f40;
+    }
   }
 </style>
 
-<main class="blog-wrap">
-  <a class="blog-toplink" href="/blog">&larr; Back to blog</a>
+<section class="blog-post-shell">
+  {% include layouts/globe.html root_id="globe-bg-post" %}
 
-  <header class="blog-author">
-    <img src="/assets/img/mot.jpg" alt="Scott Motte" />
-    <p class="blog-author-name">Scott (Mot) Motte</p>
-  </header>
+  <main class="blog-post-wrap">
+    <p class="blog-topline"><span class="blog-cmd">$</span> <a class="blog-toplink" href="/blog">vestauth / blog</a> / {{ page.path | split: '/' | last | replace: '.md', '' }}</p>
 
-  <article>
-    <p class="blog-date"><time datetime="{{ page.date | date: "%Y-%m-%d"  }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
-    <h1 class="blog-title">{{ page.title }}</h1>
+    <header class="blog-header">
+      <h1 class="blog-title">{{ page.title | downcase }}</h1>
+      <p class="blog-date"><time datetime="{{ page.date | date: "%Y-%m-%d"  }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
+    </header>
+
     {% if page.image %}
       <img class="blog-cover" src="{{ page.image }}" alt="{{ page.title }}" loading="eager" />
     {% endif %}
-    <div class="blog-content">{{ content }}</div>
-  </article>
 
-  <footer class="blog-footer">
-    <p><a href="/feed.xml">Subscribe via RSS</a> or follow us <a href="https://x.com/vestauth">@vestauth</a>.</p>
-  </footer>
-</main>
+    <article class="blog-content">{{ content }}</article>
+
+    <footer class="blog-footer">
+      <p><a href="/feed.xml">Subscribe via RSS</a> or follow us <a href="https://x.com/vestauthx">@vestauthx</a>.</p>
+    </footer>
+  </main>
+
+  <div class="site-footer-wrap">
+    {% include layouts/site-footer.html %}
+  </div>
+</section>

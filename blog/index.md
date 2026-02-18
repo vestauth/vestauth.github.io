@@ -2,104 +2,27 @@
 title: "Blog"
 ---
 
-<style>
-  .blog-index {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 2rem 1.25rem 3rem;
-  }
+<section class="relative min-h-screen overflow-hidden px-5 py-8 sm:px-12 sm:py-10">
+  {% include layouts/globe.html root_id="globe-bg-blog" %}
 
-  .blog-index h1 {
-    font-size: clamp(2rem, 4vw, 2.6rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin: 0 0 1.5rem;
-  }
+  <div class="relative z-10 max-w-4xl font-mono text-xs leading-5 text-black dark:text-white sm:text-sm sm:leading-6 [text-transform:lowercase]">
+    <p class="break-words [overflow-wrap:anywhere]"><span class="text-[#1a7f52] dark:text-[#30ff8a]">$</span> <a class="underline decoration-[#1a7f52]/50 underline-offset-4 hover:decoration-[#1a7f52] dark:decoration-[#30ff8a]/50 dark:hover:decoration-[#30ff8a]" href="/">vestauth</a> / blog</p>
 
-  .blog-grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
-  }
+    <section class="mt-6 sm:mt-8">
+      <p class="max-w-3xl text-zinc-600 dark:text-zinc-400">short notes on agent auth, request signing, and production lessons.</p>
+    </section>
 
-  .blog-card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    background: #ffffff;
-    border: 1px solid #e4e4e7;
-    border-radius: 14px;
-    overflow: hidden;
-    transition: transform 120ms ease, box-shadow 120ms ease;
-    height: 100%;
-  }
+    <section class="mt-5 sm:mt-6">
+      <ul class="list-disc space-y-3 pl-5 marker:text-[#1a7f52] dark:marker:text-[#30ff8a]">
+        {% for post in site.categories.blog %}
+          <li class="max-w-3xl">
+            <a class="underline decoration-[#1a7f52]/50 underline-offset-4 hover:decoration-[#1a7f52] dark:decoration-[#30ff8a]/50 dark:hover:decoration-[#30ff8a]" href="{{ post.url }}">{{ post.title | downcase }}</a>
+            <span class="ml-2 text-zinc-500 dark:text-zinc-400">{{ post.date | date: "%Y-%m-%d" }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
 
-  .blog-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
-    text-decoration: none;
-  }
-
-  .blog-card img {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
-    display: block;
-    background: #f4f4f5;
-  }
-
-  .blog-card-body {
-    padding: 0.9rem 1rem 1rem;
-  }
-
-  .blog-card time {
-    color: #52525b;
-    font-size: 0.82rem;
-    display: block;
-    margin-bottom: 0.35rem;
-  }
-
-  .blog-card h2 {
-    margin: 0;
-    line-height: 1.3;
-    font-size: 1.07rem;
-    letter-spacing: -0.01em;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .blog-card {
-      background: #0b2319;
-      border-color: #1f4436;
-    }
-
-    .blog-card time {
-      color: #a1a1aa;
-    }
-
-    .blog-card:hover {
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.22);
-    }
-  }
-</style>
-
-<section class="blog-index">
-  <h1>Blog</h1>
-  <ul class="blog-grid">
-    {% for post in site.categories.blog %}
-      <li>
-        <a href="{{ post.url }}" class="blog-card">
-          {% if post.image %}
-            <img alt="{{ post.title }}" loading="lazy" width="800" height="450" decoding="async" src="{{ post.image }}">
-          {% endif %}
-          <div class="blog-card-body">
-            <time datetime="{{ post.date | date: "%Y-%m-%d" }}">{{ post.date | date: "%B %d, %Y" }}</time>
-            <h2>{{ post.title }}</h2>
-          </div>
-        </a>
-      </li>
-    {% endfor %}
-  </ul>
+  {% include layouts/site-footer.html %}
 </section>
