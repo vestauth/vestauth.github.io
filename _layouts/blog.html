@@ -219,7 +219,11 @@ layout: default
       <p class="blog-date"><time datetime="{{ page.date | date: "%Y-%m-%d"  }}">{{ page.date | date: "%B %d, %Y" }}</time>{% if page.author %} by {{ page.author }}{% endif %}</p>
     </header>
 
-    {% if page.image %}
+    {% if page.video %}
+      <video class="blog-cover" controls playsinline preload="metadata">
+        <source src="{{ page.video }}" type="video/mp4" />
+      </video>
+    {% elsif page.image %}
       <img class="blog-cover" src="{{ page.image }}" alt="{{ page.title }}" loading="eager" />
     {% endif %}
 
