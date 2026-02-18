@@ -29,7 +29,7 @@ title: ""
     </section>
 
     <section class="mt-4 sm:mt-6">
-      <h2 class="text-[#1a7f52] dark:text-[#30ff8a]">Provider Usage</h2>
+      <h2 class="text-[#1a7f52] dark:text-[#30ff8a]">Tool Usage</h2>
       <p class="mt-2 text-zinc-500 dark:text-zinc-500"># Verify requests and safely trust agent identity using cryptographic proof.</p>
       <pre class="mt-2 max-w-2xl overflow-x-scroll rounded border border-[#d9d9d9] bg-[#f7f7f7] p-3 text-[10px] leading-4 text-black dark:border-[#2f4f40] dark:bg-[#0d2219] dark:text-white sm:text-xs"><code>// index.js
 const express = require('express')
@@ -40,7 +40,7 @@ const app = express()
 app.get('/whoami', async (req, res) =&gt; {
   try {
     const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`
-    const agent = await vestauth.provider.verify(req.method, url, req.headers)
+    const agent = await vestauth.tool.verify(req.method, url, req.headers)
     res.json(agent)
   } catch (err) {
     res.status(401).json({ code: 401, error: { message: err.message }})

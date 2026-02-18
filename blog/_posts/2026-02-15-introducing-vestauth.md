@@ -10,17 +10,17 @@ excerpt: "Agent authentication with verifiable identity and request signatures."
 
 Today we are launching **vestauth**, authentication built for agents.
 
-`vestauth` gives agents a cryptographic identity and lets providers verify signed requests with confidence. It is designed to be simple to adopt and strong by default.
+`vestauth` gives agents a cryptographic identity and lets tools verify signed requests with confidence. It is designed to be simple to adopt and strong by default.
 
 ## Why vestauth
 
-The shift to agents introduces a new baseline requirement: providers need to know which agent made a request and whether that request was tampered with in transit.
+The shift to agents introduces a new baseline requirement: tools need to know which agent made a request and whether that request was tampered with in transit.
 
 `vestauth` addresses this with:
 
 - agent identities backed by cryptographic keys
 - signed requests agents can generate from the CLI
-- verification primitives providers can use in their servers
+- verification primitives tools can use in their servers
 
 ## Install
 
@@ -42,10 +42,10 @@ Sign and send a request:
 vestauth agent curl https://ping.vestauth.com/ping
 ```
 
-Verify on the provider side:
+Verify on the tool side:
 
 ```js
-const agent = await vestauth.provider.verify(req.method, url, req.headers)
+const agent = await vestauth.tool.verify(req.method, url, req.headers)
 ```
 
 ## What is next
