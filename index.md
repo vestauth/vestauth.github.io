@@ -15,29 +15,43 @@ title: ""
 
     <section class="mt-4 sm:mt-6">
       <h2 class="text-[#1a7f52] dark:text-[#30ff8a]">Install</h2>
-      <p class="mt-2 break-words [overflow-wrap:anywhere]"><span class="text-[#1a7f52] dark:text-[#30ff8a]">$</span> curl -sSf https://vestauth.sh | sh</p>
+      <div class="mt-2 max-w-2xl text-[10px] leading-4 sm:text-xs">
+{% highlight sh %}
+$ curl -sSf https://vestauth.sh | sh
+{% endhighlight %}
+      </div>
     </section>
 
     <section class="mt-4 sm:mt-6">
       <h2 class="text-[#1a7f52] dark:text-[#30ff8a]">Usage</h2>
 
       <p class="mt-2 text-zinc-500 dark:text-zinc-500"># Give agents cryptographic identities…</p>
-      <p class="break-words [overflow-wrap:anywhere]"><span class="text-[#1a7f52] dark:text-[#30ff8a]">$</span> vestauth agent init</p>
+      <div class="mt-2 max-w-2xl text-[10px] leading-4 sm:text-xs">
+{% highlight sh %}
+$ vestauth agent init
+{% endhighlight %}
+      </div>
 
       <p class="mt-4 text-zinc-500 dark:text-zinc-500"># …and sign their curl requests with cryptographic authentication.</p>
-      <p class="break-words [overflow-wrap:anywhere]"><span class="text-[#1a7f52] dark:text-[#30ff8a]">$</span> vestauth agent curl https://ping.vestauth.com/ping</p>
+      <div class="mt-2 max-w-2xl text-[10px] leading-4 sm:text-xs">
+{% highlight sh %}
+$ vestauth agent curl https://ping.vestauth.com/ping
+{% endhighlight %}
+      </div>
     </section>
 
     <section class="mt-4 sm:mt-6">
       <h2 class="text-[#1a7f52] dark:text-[#30ff8a]">Tool Usage</h2>
       <p class="mt-2 text-zinc-500 dark:text-zinc-500"># Verify requests and safely trust agent identity using cryptographic proof.</p>
-      <pre class="mt-2 max-w-2xl overflow-x-scroll rounded border border-[#d9d9d9] bg-[#f7f7f7] p-3 text-[10px] leading-4 text-black dark:border-[#2f4f40] dark:bg-[#0d2219] dark:text-white sm:text-xs"><code>// index.js
+      <div class="mt-2 max-w-2xl text-[10px] leading-4 sm:text-xs">
+{% highlight js %}
+// index.js
 const express = require('express')
 const vestauth = require('vestauth')
 const app = express()
 
 // vestauth agent curl https://ping.vestauth.com/ping
-app.get('/whoami', async (req, res) =&gt; {
+app.get('/whoami', async (req, res) => {
   try {
     const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`
     const agent = await vestauth.tool.verify(req.method, url, req.headers)
@@ -47,7 +61,9 @@ app.get('/whoami', async (req, res) =&gt; {
   }
 })
 
-app.listen(3000)</code></pre>
+app.listen(3000)
+{% endhighlight %}
+      </div>
     </section>
 
   </div>

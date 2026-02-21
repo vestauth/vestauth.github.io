@@ -45,11 +45,9 @@ exclude:
 markdown: kramdown
 kramdown:
   input: GFM
-  syntax_highlighter: none
-  syntax_highlighter_opts:
-    disable: true
+  syntax_highlighter: rouge
 
-highlighter: none
+highlighter: rouge
 
 plugins:
   - jekyll-redirect-from
