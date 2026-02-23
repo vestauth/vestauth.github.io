@@ -18,7 +18,6 @@ layout: default
     font-size: 0.72rem;
     line-height: 1.65;
     color: #111827;
-    text-transform: lowercase;
   }
 
   .blog-topline {
@@ -88,6 +87,18 @@ layout: default
     margin-bottom: 0.85rem;
   }
 
+  .blog-content blockquote {
+    margin: 1rem 0;
+    padding: 0.7rem 0.9rem;
+    border-left: 3px solid #1a7f52;
+    background: rgba(26, 127, 82, 0.06);
+    color: #374151;
+  }
+
+  .blog-content blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
   .blog-content ul,
   .blog-content ol {
     margin-top: 0;
@@ -109,31 +120,6 @@ layout: default
 
   .blog-content li {
     margin-bottom: 0.32rem;
-  }
-
-  .blog-content code {
-    background: #f4f4f5;
-    color: #111827;
-    font-size: 0.9em;
-    border-radius: 6px;
-    padding: 0.08rem 0.32rem;
-  }
-
-  .blog-content pre {
-    margin-top: 0.15rem;
-    margin-bottom: 1rem;
-    background: #f7f7f7;
-    border: 1px solid #d9d9d9;
-    border-radius: 10px;
-    padding: 0.75rem 0.9rem;
-    overflow-x: auto;
-    font-size: 0.76rem;
-  }
-
-  .blog-content pre code {
-    background: transparent;
-    padding: 0;
-    font-size: inherit;
   }
 
   .blog-content a {
@@ -193,13 +179,6 @@ layout: default
     .blog-date,
     .blog-footer {
       color: #a1a1aa;
-    }
-
-    .blog-content code,
-    .blog-content pre {
-      background: #0d2219;
-      border-color: #2f4f40;
-      color: #f4f4f5;
     }
 
     .blog-footer {

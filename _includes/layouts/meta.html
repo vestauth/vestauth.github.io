@@ -46,6 +46,143 @@
     background-position: center;
     background-attachment: fixed;
   }
+
+  main :not(pre) > code {
+    background: #f4f4f5;
+    color: #111827;
+    font-size: 0.9em;
+    border-radius: 6px;
+    padding: 0.08rem 0.32rem;
+  }
+
+  main div.highlighter-rouge,
+  main pre.highlight,
+  main figure.highlight {
+    margin-top: 0.15rem;
+    margin-bottom: 1rem;
+    background: #f5f8fc;
+    border: 1px solid #d7e3f0;
+    border-left: 3px solid #7aa2d6;
+    border-radius: 10px;
+    padding: 0.75rem 0.9rem;
+    overflow-x: auto;
+    font-size: 0.76rem;
+    line-height: 1.55;
+  }
+
+  main div.highlighter-rouge .highlight,
+  main div.highlighter-rouge pre.highlight,
+  main figure.highlight pre {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    border-left: 0;
+    border-radius: 0;
+    font-size: inherit;
+    overflow: visible;
+  }
+
+  main div.highlighter-rouge code,
+  main pre.highlight code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+  }
+
+  main .highlight .c,
+  main .highlight .c1,
+  main .highlight .cm {
+    color: #64748b;
+    font-style: italic;
+  }
+
+  main .highlight .k,
+  main .highlight .kd,
+  main .highlight .kn,
+  main .highlight .kp,
+  main .highlight .kr,
+  main .highlight .kt {
+    color: #b45309;
+  }
+
+  main .highlight .s,
+  main .highlight .s1,
+  main .highlight .s2,
+  main .highlight .sb,
+  main .highlight .se,
+  main .highlight .sh {
+    color: #0369a1;
+  }
+
+  main .highlight .m,
+  main .highlight .mi,
+  main .highlight .mf {
+    color: #be123c;
+  }
+
+  main .highlight .na,
+  main .highlight .nb,
+  main .highlight .nc,
+  main .highlight .nf,
+  main .highlight .nx {
+    color: #1d4ed8;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    main :not(pre) > code {
+      background: #0f141a;
+      color: #e5e7eb;
+    }
+
+    main div.highlighter-rouge,
+    main pre.highlight,
+    main figure.highlight {
+      background: #0f141a;
+      border-color: #27323d;
+      border-left-color: #64748b;
+      color: #e5e7eb;
+    }
+
+    main .highlight .c,
+    main .highlight .c1,
+    main .highlight .cm {
+      color: #7c8aa0;
+    }
+
+    main .highlight .k,
+    main .highlight .kd,
+    main .highlight .kn,
+    main .highlight .kp,
+    main .highlight .kr,
+    main .highlight .kt {
+      color: #fbbf24;
+    }
+
+    main .highlight .s,
+    main .highlight .s1,
+    main .highlight .s2,
+    main .highlight .sb,
+    main .highlight .se,
+    main .highlight .sh {
+      color: #34d399;
+    }
+
+    main .highlight .m,
+    main .highlight .mi,
+    main .highlight .mf {
+      color: #fb923c;
+    }
+
+    main .highlight .na,
+    main .highlight .nb,
+    main .highlight .nc,
+    main .highlight .nf,
+    main .highlight .nx {
+      color: #fda4af;
+    }
+  }
 </style>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
