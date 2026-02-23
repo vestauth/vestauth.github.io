@@ -37,9 +37,7 @@ In practice, you're building an agent identity authority: a service that registe
 
 `/.well-known/http-message-signatures-directory` is the discovery endpoint other systems use to fetch that agent's public keys so signed requests can be verified.
 
-## Build it
-
-### Create server.js
+## Create server.js
 
 First, let's create a basic server and make sure it responds.
 
@@ -80,7 +78,7 @@ Visit [localhost:3000](http://localhost:3000) and you should see:
 
 From here, we'll begin adding the pieces Vestauth needs — starting with request verification at registration.
 
-### POST /register
+## POST /register
 
 Next, add a **/register** endpoint that verifies the incoming signed request.
 
@@ -160,7 +158,7 @@ app.post('/register', async (req, res) => {
 
 Next, we're ready to initialize our agent.
 
-### Initialize agent
+## Initialize agent
 
 Create a folder to place your agent in.
 
@@ -175,7 +173,7 @@ And then initialize your agent. This will call your `/register` endpoint.
 $ vestauth agent init --hostname http://localhost:3000
 ```
 
-### Add datastore
+## Add datastore
 
 We'll add a simple in-memory datastore, but you can replace this with a robust datastore like postgres.
 
@@ -227,7 +225,7 @@ Great! We can now track registered agents and their public json web keys. (We'll
 
 > Note: This example always creates a new agent. Production systems should handle upserts, multiple keys per agent, key rotation, and revocation.
 
-### Add `.well-known` endpoint
+## Add `.well-known` endpoint
 
 Next we need to add the endpoint for public key discovery. This is according to the emerging [web-bot-auth](https://datatracker.ietf.org/doc/html/draft-meunier-web-bot-auth-architecture) standard.
 
@@ -242,7 +240,7 @@ app.get('/.well-known/http-message-signatures-directory', (req, res) => {
 })
 ```
 
-### Add wildcard support
+## Add wildcard support
 
 Next, add support for wildcard subdomains. This is according to the [spec](https://datatracker.ietf.org/doc/html/draft-meunier-web-bot-auth-architecture).
 
@@ -267,7 +265,7 @@ app.use((req, res, next) => {
 ...
 ```
 
-### Add `/whoami` endpoint
+## Add `/whoami` endpoint
 
 Add a whoami endpoint to surface the well known endpoint.
 
@@ -286,7 +284,7 @@ app.get('/whoami', async (req, res) => {
 })
 ```
 
-### Check `/whoami`
+## Check `/whoami`
 
 Restart your server.
 
