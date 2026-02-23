@@ -12,7 +12,34 @@ Vestauth doesn't require special infrastructure. At its core, it's just HTTP: an
 
 To make that concrete, we'll build a minimal Vestauth service from scratch. We'll start with a small express server and add capabilities one piece at a time. By the end, you'll have a working inhouse vestauth infrastructure.
 
-## server.js
+## What Vestauth does
+
+Vestauth is an identity authority. It:
+
+* Registers agents
+* Stores their public keys
+* Serves keys via .well-known
+* Verifies signed requests
+
+![](https://github.com/user-attachments/assets/859105b4-0f92-46d3-8a0d-4ea61e201b9f)
+
+> Lifecycle at a glance:
+> 1. Agent generates a keypair locally.
+> 2. Agent signs `POST /register`.
+> 3. Server verifies the signature and stores the agent's public key.
+> 4. Later requests are verified by looking up keys via the agent's `.well-known` endpoint.
+
+## What you're building
+
+In practice, you're building an agent identity authority: a service that registers agent identities, proves key ownership at registration time, and publishes public keys for discovery.
+
+`POST /register` verifies proof-of-possession, meaning the agent can sign with the private key that matches the public key it is asking you to store.
+
+`/.well-known/http-message-signatures-directory` is the discovery endpoint other systems use to fetch that agent's public keys so signed requests can be verified.
+
+## Build it
+
+### Create server.js
 
 First, let's create a basic server and make sure it responds.
 
@@ -53,7 +80,7 @@ Visit [localhost:3000](http://localhost:3000) and you should see:
 
 From here, we'll begin adding the pieces Vestauth needs — starting with request verification at registration.
 
-## POST /register
+### POST /register
 
 Next, add a **/register** endpoint that verifies the incoming signed request.
 
@@ -133,7 +160,7 @@ app.post('/register', async (req, res) => {
 
 Next, we're ready to initialize our agent.
 
-## Initialize agent
+### Initialize agent
 
 Create a folder to place your agent in.
 
@@ -148,9 +175,13 @@ And then initialize your agent. This will call your `/register` endpoint.
 $ vestauth agent init --hostname http://localhost:3000
 ```
 
-## Add datastore
+### Add datastore
 
 We'll add a simple in-memory datastore, but you can replace this with a robust datastore like postgres.
+
+> Warning: This example uses in-memory storage. Restarting the server will lose all agents and keys. In production, use a persistent datastore.
+
+The agent signs the registration request with its private key. This verifies proof-of-possession of the public key being registered.
 
 ```js
 ...
@@ -194,7 +225,9 @@ app.post('/register', async (req, res) => {
 
 Great! We can now track registered agents and their public json web keys. (We'll leave it an exercise for the reader to handle upserts and relationships correctly).
 
-## Add `.well-known` endpoint
+> Note: This example always creates a new agent. Production systems should handle upserts, multiple keys per agent, key rotation, and revocation.
+
+### Add `.well-known` endpoint
 
 Next we need to add the endpoint for public key discovery. This is according to the emerging [web-bot-auth](https://datatracker.ietf.org/doc/html/draft-meunier-web-bot-auth-architecture) standard.
 
@@ -209,7 +242,7 @@ app.get('/.well-known/http-message-signatures-directory', (req, res) => {
 })
 ```
 
-## Add wildcard support
+### Add wildcard support
 
 Next, add support for wildcard subdomains. This is according to the [spec](https://datatracker.ietf.org/doc/html/draft-meunier-web-bot-auth-architecture).
 
@@ -234,7 +267,7 @@ app.use((req, res, next) => {
 ...
 ```
 
-## Add `/whoami` endpoint
+### Add `/whoami` endpoint
 
 Add a whoami endpoint to surface the well known endpoint.
 
@@ -253,7 +286,7 @@ app.get('/whoami', async (req, res) => {
 })
 ```
 
-## Check `/whoami`
+### Check `/whoami`
 
 Restart your server.
 
@@ -305,14 +338,24 @@ Confirm the public key is being served.
 }
 ```
 
-Great! You just built your own inhouse vestauth infrastructure.
-
 ## What's Next
 
-Now that you have a solid foundation, you can easily start on things like:
+From here, the next step is production hardening:
 
 * Swapping in your own database
-* Handling upserts
-* and adding `/rotation`
+* Handling upserts and duplicate registrations
+* Supporting multiple keys, rotation, and revocation
 
-We'll leave those as an exercise for the reader. Enjoy [vestauth](https://vestauth.com)!
+## Conclusion
+
+Great! You now run your own Vestauth infrastructure.
+
+You control agent identity, key ownership, discovery, and verification — fully inhouse.
+
+That means your systems no longer rely on API keys floating around in config files. Agents can prove who they are cryptographically, and other systems can verify them using standard HTTP.
+
+The core is already there: proof-of-possession at registration, public key discovery via `.well-known`, and request verification on top.
+
+This is the foundation for agents to authenticate with proof of possession instead of shared secrets.
+
+You now have the core of a standards-based agent identity layer you can run, audit, and extend inhouse.
