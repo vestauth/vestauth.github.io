@@ -271,7 +271,7 @@ Add a whoami endpoint to surface the well known endpoint.
 
 ```js
 ...
-app.get('/whoami', async (req, res) => {
+app.post('/whoami', async (req, res) => {
   try {
     const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`
     const verified = await vestauth.tool.verify(req.method, url, req.headers)
