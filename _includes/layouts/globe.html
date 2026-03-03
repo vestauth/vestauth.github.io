@@ -8,7 +8,7 @@
 
 <script src="https://unpkg.com/globe.gl"></script>
 <style>
-  .ping-label {
+  .geo-label {
     display: grid;
     gap: 2px;
     padding: 6px 8px;
@@ -23,10 +23,10 @@
     pointer-events: none;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
   }
-  .ping-label__title { opacity: 0.78; }
-  .ping-label__agent { color: rgba(14, 18, 24, 0.95); }
-  .ping-label__kid { opacity: 0.88; }
-  .ping-label__meta { opacity: 0.76; }
+  .geo-label__title { opacity: 0.78; }
+  .geo-label__agent { color: rgba(14, 18, 24, 0.95); }
+  .geo-label__kid { opacity: 0.88; }
+  .geo-label__meta { opacity: 0.76; }
 </style>
 <script>
   (() => {
@@ -172,23 +172,23 @@
 
     function makeHtmlLabel(d) {
       const rootEl = document.createElement('div');
-      rootEl.className = 'ping-label';
+      rootEl.className = 'geo-label';
       rootEl.style.opacity = String(d.opacity ?? 1);
 
       const title = document.createElement('div');
-      title.className = 'ping-label__title';
+      title.className = 'geo-label__title';
       title.textContent = 'id: ' + (d.id ?? '??');
 
       const agent = document.createElement('div');
-      agent.className = 'ping-label__agent';
+      agent.className = 'geo-label__agent';
       agent.textContent = d.label || 'agent-????';
 
       const kid = document.createElement('div');
-      kid.className = 'ping-label__kid';
+      kid.className = 'geo-label__kid';
       kid.textContent = d.kidShort || 'kid:????';
 
       const meta = document.createElement('div');
-      meta.className = 'ping-label__meta';
+      meta.className = 'geo-label__meta';
       meta.textContent = formatMeta(d);
 
       rootEl.appendChild(title);
@@ -200,33 +200,33 @@
       return rootEl;
     }
 
-    async function pullPings() {
+    async function pullGeos() {
       if (pullInFlight) return;
       pullInFlight = true;
       try {
-        const res = await fetch('https://ping.vestauth.com/pings?since=' + encodeURIComponent(lastSeen));
+        const res = await fetch('https://geo.vestauth.com/geos?since=' + encodeURIComponent(lastSeen));
         if (!res.ok) return;
         const batch = await res.json();
         if (!Array.isArray(batch) || batch.length === 0) return;
 
         let maxSeen = lastSeen;
         for (let i = 0; i < batch.length; i += 1) {
-          const ping = batch[i];
-          if (typeof ping.ts === 'number' && ping.ts > maxSeen) maxSeen = ping.ts;
-          if (typeof ping.id === 'number' && ping.id > maxSeen) maxSeen = ping.id;
+          const geo = batch[i];
+          if (typeof geo.ts === 'number' && geo.ts > maxSeen) maxSeen = geo.ts;
+          if (typeof geo.id === 'number' && geo.id > maxSeen) maxSeen = geo.id;
           activePoints.push({
-            lat: ping.lat,
-            lng: ping.lng,
+            lat: geo.lat,
+            lng: geo.lng,
             altitude: 0,
-            maxAltitude: ping.altitude ?? 90,
+            maxAltitude: geo.altitude ?? 90,
             r: pointRadius,
             opacity: 1,
             born: performance.now(),
             grown: false,
-            label: shortAgentId(ping.agent_id),
-            kidShort: shortKid(ping.agent_kid),
-            id: ping.id,
-            ts: ping.ts,
+            label: shortAgentId(geo.agent_id),
+            kidShort: shortKid(geo.agent_kid),
+            id: geo.id,
+            ts: geo.ts,
             htmlEl: null
           });
         }
@@ -293,8 +293,8 @@
       requestAnimationFrame(animatePoints);
     }
 
-    pullPings();
-    setInterval(pullPings, 1000);
+    pullGeos();
+    setInterval(pullGeos, 1000);
     animatePoints();
   })();
 </script>

@@ -35,7 +35,7 @@ $ vestauth agent init
       <p class="mt-4 text-zinc-500 dark:text-zinc-500"># …and sign their curl requests with cryptographic authentication.</p>
       <div class="mt-2 max-w-2xl text-[10px] leading-4 sm:text-xs">
 {% highlight sh %}
-$ vestauth agent curl https://ping.vestauth.com/ping
+$ vestauth agent curl https://geo.vestauth.com/geo
 {% endhighlight %}
       </div>
     </section>
@@ -50,7 +50,7 @@ const express = require('express')
 const vestauth = require('vestauth')
 const app = express()
 
-// vestauth agent curl https://ping.vestauth.com/ping
+// vestauth agent curl https://geo.vestauth.com/geo
 app.get('/whoami', async (req, res) => {
   try {
     const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`

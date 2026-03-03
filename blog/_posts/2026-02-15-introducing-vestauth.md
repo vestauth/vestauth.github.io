@@ -39,7 +39,7 @@ vestauth agent init
 Sign and send a request:
 
 ```sh
-vestauth agent curl https://ping.vestauth.com/ping
+vestauth agent curl https://geo.vestauth.com/geo
 ```
 
 Verify on the tool side:
